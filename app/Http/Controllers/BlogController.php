@@ -28,11 +28,11 @@ class BlogController extends Controller
         if($request->search_date!=''){
             $search_date = date("Y-m-d", strtotime($request->search_date));
 
-            $blogs = Blog::with('categories')->whereDate('created_at',$search_date)->orderBy('id','desc')->paginate(1);
+            $blogs = Blog::with('categories')->whereDate('created_at',$search_date)->orderBy('id','desc')->paginate(15);
         }else{
-            $blogs = Blog::with('categories')->orderBy('id','desc')->paginate(1);
+            $blogs = Blog::with('categories')->orderBy('id','desc')->paginate(15);
         }
-        
+
         if($request->ajax()) {
             return view('blogs.data', compact('blogs'));
         }
